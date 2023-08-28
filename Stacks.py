@@ -8,11 +8,34 @@
 #bracket in the correct order.
 
 #sample input = 
-
 #expression1 = "([]{})"
 #expression2 = "([)]"
 #print(is_balanced(expression1))  # Output: True
 #print(is_balanced(expression2))  # Output: False
 
 def is_balanced(expression):
-    pass
+    stack = []
+    if not expression:
+        return False
+    for x in expression:
+        if x in ['{', '[', '(']:
+            stack.append(x)
+        else:
+            if not stack:
+                return False
+            last_open = stack.pop()
+            if x == ')' and last_open != '(':
+                return False
+            elif x == '}' and last_open != '{':
+                return False
+            elif x == ']' and last_open != '[':
+                return False
+    if stack:
+        return False
+    else:
+        return True
+            
+
+expression = ""
+print(is_balanced(expression))
+
